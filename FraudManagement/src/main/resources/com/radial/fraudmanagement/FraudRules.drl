@@ -22,6 +22,14 @@ function boolean isNullBilling(Order pOrder) {
     return status;
 }
 
+function boolean billingCountryUS(Order pOrder) {
+    boolean status=isNullBilling(pOrder);
+    if(!status && "US".equalsIgnoreCase(pOrder.totalCost.address.countryName.code)) {
+        status=true;
+    }
+    return status;
+}
+
 function boolean isBNLowerCase(Order pOrder) {
     boolean status=false;
     if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.personName ||
@@ -109,3 +117,17 @@ rule "Rule1 BillingNameLowerCase"
 		insert( fraud );
 end
 
+rule "Rule1 BillingCountryUS"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, billingCountryUS(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 BillingCountryUS");
+	    trail.setAction("None");
+	    trail.setNotes("Country = US, rule should not fire");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
