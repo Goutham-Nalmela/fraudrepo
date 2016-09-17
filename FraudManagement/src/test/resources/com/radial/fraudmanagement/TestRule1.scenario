@@ -12,9 +12,17 @@
             <type>FraudRequest</type>
             <fieldData>
               <field-data>
-                <name>id</name>
-                <value>123</value>
-                <nature>4</nature>
+                <fieldName>order</fieldName>
+                <fact>
+                  <type>Order</type>
+                  <fieldData>
+                    <field-data>
+                      <name>orderID</name>
+                      <value>order1234</value>
+                      <nature>4</nature>
+                    </field-data>
+                  </fieldData>
+                </fact>
               </field-data>
             </fieldData>
           </fact>
@@ -31,7 +39,7 @@
       <fieldValues>
         <expect-field>
           <fieldName>totalScore</fieldName>
-          <expected>10</expected>
+          <expected>400</expected>
           <actualResult>No match</actualResult>
           <successResult>false</successResult>
           <explanation>Fact of type [Audit] was not found in the results.</explanation>
@@ -43,7 +51,7 @@
       <anonymous>true</anonymous>
     </expect-fact>
   </fixtures>
-  <lastRunResult>2016-09-17 08:28:22.417 UTC</lastRunResult>
+  <lastRunResult>2016-09-17 20:29:07.778 UTC</lastRunResult>
   <rules/>
   <inclusive>false</inclusive>
   <packageName>com.radial.fraudmanagement</packageName>
