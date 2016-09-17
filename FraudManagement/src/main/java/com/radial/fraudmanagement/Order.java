@@ -11,13 +11,13 @@ public class Order implements java.io.Serializable
 
    private java.lang.String orderID;
 
-   private com.radial.fraudmanagement.ShippingInfo shippingInfo;
+   public com.radial.fraudmanagement.ShippingInfo shippingInfo;
 
-   private com.radial.fraudmanagement.LineItems lineItems;
+   public com.radial.fraudmanagement.LineItems lineItems;
 
-   private com.radial.fraudmanagement.TotalCost totalCost;
+   public com.radial.fraudmanagement.TotalCost totalCost;
 
-   private com.radial.fraudmanagement.CustomerInfo customerInfo;
+   public com.radial.fraudmanagement.CustomerInfo customerInfo;
 
    public Order()
    {
@@ -35,6 +35,9 @@ public class Order implements java.io.Serializable
 
    public com.radial.fraudmanagement.ShippingInfo getShippingInfo()
    {
+       if(null == this.shippingInfo) {
+           this.shippingInfo = new ShippingInfo();
+       }
       return this.shippingInfo;
    }
 
@@ -45,6 +48,9 @@ public class Order implements java.io.Serializable
 
    public com.radial.fraudmanagement.LineItems getLineItems()
    {
+       if(null == this.lineItems) {
+           this.lineItems = new LineItems();
+       }
       return this.lineItems;
    }
 
@@ -55,6 +61,9 @@ public class Order implements java.io.Serializable
 
    public com.radial.fraudmanagement.TotalCost getTotalCost()
    {
+       if(null == this.totalCost) {
+           this.totalCost = new TotalCost();
+       }
       return this.totalCost;
    }
 
@@ -65,6 +74,9 @@ public class Order implements java.io.Serializable
 
    public com.radial.fraudmanagement.CustomerInfo getCustomerInfo()
    {
+       if(null == this.customerInfo) {
+           this.customerInfo = new CustomerInfo();
+       }
       return this.customerInfo;
    }
 
