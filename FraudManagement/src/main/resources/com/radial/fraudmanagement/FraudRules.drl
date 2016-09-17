@@ -22,6 +22,18 @@ function boolean isNullBilling(Order pOrder) {
     return status;
 }
 
+function boolean dollarAmountInRange(Order pOrder) {
+    boolean status=false;
+    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.costTotals) {
+        status=true;
+    }
+    float amount=pOrder.totalCost.costTotals.amountAfterTax;
+    if(amount < 0 || amount >= 150) {
+        status=true;
+    }
+    return status;
+}
+
 function boolean billingCountryUS(Order pOrder) {
     boolean status=isNullBilling(pOrder);
     if(!status && "US".equalsIgnoreCase(pOrder.totalCost.address.countryName.code)) {
@@ -131,3 +143,34 @@ rule "Rule1 BillingCountryUS"
 	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
 end
+
+rule "Rule1 DollarAmountRange"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, dollarAmountInRange(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 DollarAmountRange");
+	    trail.setAction("None");
+	    trail.setNotes("Dollar Amount not in range, rule should not fire");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
+rule "Rule1 MeetsAllCriteria"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, dollarAmountInRange(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(-300);
+	    trail.setRule("Rule1 MeetsAllCriteria");
+	    trail.setAction("Automatic Approval");
+	    trail.setNotes("Meets all conditions");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
