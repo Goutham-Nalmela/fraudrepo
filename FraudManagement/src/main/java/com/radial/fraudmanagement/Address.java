@@ -61,6 +61,9 @@ public class Address implements java.io.Serializable
 
    public com.radial.fraudmanagement.CountryName getCountryName()
    {
+       if(null == this.countryName) {
+           this.countryName=new CountryName();
+       }
       return this.countryName;
    }
 
