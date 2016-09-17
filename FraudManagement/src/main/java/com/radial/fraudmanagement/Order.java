@@ -11,6 +11,14 @@ public class Order implements java.io.Serializable
 
    private java.lang.String orderID;
 
+   private com.radial.fraudmanagement.ShippingInfo shippingInfo;
+
+   private com.radial.fraudmanagement.LineItems lineItems;
+
+   private com.radial.fraudmanagement.TotalCost totalCost;
+
+   private com.radial.fraudmanagement.CustomerInfo customerInfo;
+
    public Order()
    {
    }
@@ -25,9 +33,57 @@ public class Order implements java.io.Serializable
       this.orderID = orderID;
    }
 
-   public Order(java.lang.String orderID)
+   public com.radial.fraudmanagement.ShippingInfo getShippingInfo()
+   {
+      return this.shippingInfo;
+   }
+
+   public void setShippingInfo(com.radial.fraudmanagement.ShippingInfo shippingInfo)
+   {
+      this.shippingInfo = shippingInfo;
+   }
+
+   public com.radial.fraudmanagement.LineItems getLineItems()
+   {
+      return this.lineItems;
+   }
+
+   public void setLineItems(com.radial.fraudmanagement.LineItems lineItems)
+   {
+      this.lineItems = lineItems;
+   }
+
+   public com.radial.fraudmanagement.TotalCost getTotalCost()
+   {
+      return this.totalCost;
+   }
+
+   public void setTotalCost(com.radial.fraudmanagement.TotalCost totalCost)
+   {
+      this.totalCost = totalCost;
+   }
+
+   public com.radial.fraudmanagement.CustomerInfo getCustomerInfo()
+   {
+      return this.customerInfo;
+   }
+
+   public void setCustomerInfo(com.radial.fraudmanagement.CustomerInfo customerInfo)
+   {
+      this.customerInfo = customerInfo;
+   }
+
+   public Order(java.lang.String orderID,
+         com.radial.fraudmanagement.ShippingInfo shippingInfo,
+         com.radial.fraudmanagement.LineItems lineItems,
+         com.radial.fraudmanagement.TotalCost totalCost,
+         com.radial.fraudmanagement.CustomerInfo customerInfo)
    {
       this.orderID = orderID;
+      this.shippingInfo = shippingInfo;
+      this.lineItems = lineItems;
+      this.totalCost = totalCost;
+      this.customerInfo = customerInfo;
    }
 
 }
