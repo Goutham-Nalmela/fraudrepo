@@ -1,10 +1,20 @@
 package com.radial.fraudmanagement;
 
 import com.radial.fraudmanagement.IPAddress;
+import com.radial.fraudmanagement.Order;
 
 function boolean isNullIP(IPAddress ip) {
     boolean status=false;
     if(null == ip || null == ip.countryName || null == ip.countryName.code) {
+        status=true;
+    }
+    return status;
+}
+
+function boolean isNullBilling(Order pOrder) {
+    boolean status=false;
+    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.address ||
+        null == pOrder.totalCost.address.countryName || null == pOrder.totalCost.address.countryName.code) {
         status=true;
     }
     return status;
@@ -21,8 +31,21 @@ rule "Rule1 NullIP"
 	    trail.setAction("None");
 	    trail.setNotes("Null IP, rule should not fire");
 	    fraud.getAudit().getAuditTrail().add(trail);
-	    System.out.println("request:::"+fraud.fraudRequest);
 	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
 end
 
+rule "Rule1 NullBC"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, isNullBilling(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 NullBC");
+	    trail.setAction("None");
+	    trail.setNotes("Null BillingCountry, rule should not fire");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
