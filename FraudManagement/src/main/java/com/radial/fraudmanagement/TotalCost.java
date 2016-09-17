@@ -9,13 +9,13 @@ public class TotalCost implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   private com.radial.fraudmanagement.Address address;
-   private com.radial.fraudmanagement.PersonName personName;
+   public com.radial.fraudmanagement.Address address;
+   public com.radial.fraudmanagement.PersonName personName;
    private java.lang.String email;
 
-   private com.radial.fraudmanagement.PaymentCard paymentCard;
+   public com.radial.fraudmanagement.PaymentCard paymentCard;
 
-   private com.radial.fraudmanagement.CostTotals costTotals;
+   public com.radial.fraudmanagement.CostTotals costTotals;
 
    public TotalCost()
    {
@@ -23,6 +23,9 @@ public class TotalCost implements java.io.Serializable
 
    public com.radial.fraudmanagement.Address getAddress()
    {
+       if(null == this.address) {
+           this.address=new Address();
+       }
       return this.address;
    }
 
@@ -33,6 +36,9 @@ public class TotalCost implements java.io.Serializable
 
    public com.radial.fraudmanagement.PersonName getPersonName()
    {
+       if(null == this.personName){
+           this.personName = new PersonName();
+       }
       return this.personName;
    }
 
@@ -53,6 +59,9 @@ public class TotalCost implements java.io.Serializable
 
    public com.radial.fraudmanagement.PaymentCard getPaymentCard()
    {
+       if(null == this.paymentCard) {
+           this.paymentCard=new PaymentCard();
+       }
       return this.paymentCard;
    }
 
@@ -63,6 +72,9 @@ public class TotalCost implements java.io.Serializable
 
    public com.radial.fraudmanagement.CostTotals getCostTotals()
    {
+       if(null == this.costTotals) {
+           this.costTotals=new CostTotals();
+       }
       return this.costTotals;
    }
 
