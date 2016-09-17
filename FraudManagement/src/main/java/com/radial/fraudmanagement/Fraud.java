@@ -18,6 +18,9 @@ public class Fraud implements java.io.Serializable
 
    public com.radial.fraudmanagement.FraudRequest getFraudRequest()
    {
+       if(null == this.fraudRequest) {
+           this.fraudRequest = new FraudRequest();
+       }
       return this.fraudRequest;
    }
 
