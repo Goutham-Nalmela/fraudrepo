@@ -169,7 +169,7 @@ rule "Rule1 MeetsAllCriteria"
 	dialect "java"
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
-		!isNullBilling(Fraud.fraudRequest.order),!isBNLowerCase(Fraud.fraudRequest.order),
+		!isNullBilling(Fraud.fraudRequest.order),isBNLowerCase(Fraud.fraudRequest.order),
 		dollarAmountInRange(Fraud.fraudRequest.order), !billingCountryUS(Fraud.fraudRequest.order),
 		BillingCountryEqual(Fraud.fraudRequest))
 	then
