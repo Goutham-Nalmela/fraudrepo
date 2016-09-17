@@ -9,9 +9,9 @@ public class CustomerInfo implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   private com.radial.fraudmanagement.PersonName personName;
-   private com.radial.fraudmanagement.Telephone telephone;
-   private com.radial.fraudmanagement.Address address;
+   public com.radial.fraudmanagement.PersonName personName;
+   public com.radial.fraudmanagement.Telephone telephone;
+   public com.radial.fraudmanagement.Address address;
 
    public CustomerInfo()
    {
@@ -19,6 +19,9 @@ public class CustomerInfo implements java.io.Serializable
 
    public com.radial.fraudmanagement.PersonName getPersonName()
    {
+       if(null == this.personName) {
+           this.personName = new PersonName();
+       }
       return this.personName;
    }
 
@@ -29,6 +32,9 @@ public class CustomerInfo implements java.io.Serializable
 
    public com.radial.fraudmanagement.Telephone getTelephone()
    {
+       if(null == this.telephone) {
+           this.telephone = new Telephone();
+       }
       return this.telephone;
    }
 
@@ -39,6 +45,9 @@ public class CustomerInfo implements java.io.Serializable
 
    public com.radial.fraudmanagement.Address getAddress()
    {
+       if(null == this.address) {
+           this.address = new Address();
+       }
       return this.address;
    }
 
