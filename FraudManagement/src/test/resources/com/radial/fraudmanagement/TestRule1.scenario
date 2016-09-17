@@ -1,13 +1,56 @@
 <scenario>
-  <name>TestRule1</name>
+  <name>TestRule1.scenario</name>
   <maxRuleFirings>100000</maxRuleFirings>
   <globals/>
-  <fixtures/>
+  <fixtures>
+    <fact-data>
+      <type>Fraud</type>
+      <fieldData>
+        <field-data>
+          <fieldName>fraudRequest</fieldName>
+          <fact>
+            <type>FraudRequest</type>
+            <fieldData>
+              <field-data>
+                <name>id</name>
+                <value>123</value>
+                <nature>4</nature>
+              </field-data>
+            </fieldData>
+          </fact>
+        </field-data>
+      </fieldData>
+      <name>fraud</name>
+      <isModify>false</isModify>
+    </fact-data>
+    <execution-trace>
+      <executionTimeResult>22</executionTimeResult>
+      <numberOfRulesFired>1</numberOfRulesFired>
+    </execution-trace>
+    <expect-fact>
+      <fieldValues>
+        <expect-field>
+          <fieldName>totalScore</fieldName>
+          <expected>10</expected>
+          <actualResult>No match</actualResult>
+          <successResult>false</successResult>
+          <explanation>Fact of type [Audit] was not found in the results.</explanation>
+          <operator>==</operator>
+          <nature>1</nature>
+        </expect-field>
+      </fieldValues>
+      <name>Audit</name>
+      <anonymous>true</anonymous>
+    </expect-fact>
+  </fixtures>
+  <lastRunResult>2016-09-17 08:28:22.417 UTC</lastRunResult>
   <rules/>
   <inclusive>false</inclusive>
   <packageName>com.radial.fraudmanagement</packageName>
   <imports>
     <imports/>
   </imports>
-  <ksessions/>
+  <ksessions>
+    <string>defaultKieSession</string>
+  </ksessions>
 </scenario>
