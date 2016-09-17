@@ -9,8 +9,8 @@ public class CountryName implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   private java.lang.String code;
-   private java.lang.String name;
+   public java.lang.String code;
+   public java.lang.String name;
 
    public CountryName()
    {
