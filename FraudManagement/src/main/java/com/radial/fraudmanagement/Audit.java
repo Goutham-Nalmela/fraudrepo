@@ -20,6 +20,13 @@ public class Audit implements java.io.Serializable
 
    public int getTotalScore()
    {
+       int scoreTotal = 0;
+       if(null != getAuditTrail()) {
+           for(AuditTrail trail: getAuditTrail()) {
+               scoreTotal+=trail.getScore();
+           }
+       }
+       this.totalScore = scoreTotal;
       return this.totalScore;
    }
 
