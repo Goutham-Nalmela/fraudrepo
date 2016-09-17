@@ -9,7 +9,7 @@ public class IPAddress implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   private com.radial.fraudmanagement.CountryName countryName;
+   public com.radial.fraudmanagement.CountryName countryName;
    private java.lang.String id;
 
    public IPAddress()
@@ -18,6 +18,9 @@ public class IPAddress implements java.io.Serializable
 
    public com.radial.fraudmanagement.CountryName getCountryName()
    {
+       if(null == this.countryName) {
+           this.countryName=new CountryName();
+       }
       return this.countryName;
    }
 
