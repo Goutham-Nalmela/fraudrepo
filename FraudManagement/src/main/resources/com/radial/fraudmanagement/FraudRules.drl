@@ -2,6 +2,8 @@ package com.radial.fraudmanagement;
 
 import com.radial.fraudmanagement.IPAddress;
 import com.radial.fraudmanagement.Order;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 function boolean isNullIP(IPAddress ip) {
     boolean status=false;
@@ -19,6 +21,48 @@ function boolean isNullBilling(Order pOrder) {
     }
     return status;
 }
+
+function boolean isBNLowerCase(Order pOrder) {
+    boolean status=false;
+    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.personName ||
+        null == pOrder.totalCost.personName.givenName || null == pOrder.totalCost.personName.surname) {
+        status=true;
+    } else {
+        String firstName=pOrder.totalCost.personName.givenName;
+        String lastName=pOrder.totalCost.personName.surname;
+        if(!isLowerCase(firstName) || !isLowerCase(lastName)) {
+            status=true;
+        }
+    }
+    return status;
+}
+
+function boolean isLowerCase(String name) {
+    return name.equals(name.toLowerCase());
+}
+
+function boolean validateEmail(String email) {
+    String regex = "^(.+)@(.+)$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(email);
+    boolean status = false;
+    if(matcher.matches()) {
+        String firstPart = matcher.group(1);
+        String lastPart = matcher.group(2);
+        if("radial.com".equalsIgnoreCase(lastPart) || "radial.org".equalsIgnoreCase(lastPart)) {
+            status=true;
+        }
+    }
+    return status;
+}
+
+function boolean containsCaseInsensitive(String productName) {
+    if(productName.toLowerCase().contains("tricycle")) {
+        return true;
+    }
+    return false;                       
+}
+
 
 rule "Rule1 NullIP"
 	dialect "java"
@@ -49,3 +93,19 @@ rule "Rule1 NullBC"
 	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
 end
+
+rule "Rule1 BillingNameLowerCase"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, isBNLowerCase(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 BillingNameLowerCase");
+	    trail.setAction("None");
+	    trail.setNotes("BillingName not in lower case, rule should not fire");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
