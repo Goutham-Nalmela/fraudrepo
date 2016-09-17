@@ -11,9 +11,9 @@ public class FraudRequest implements java.io.Serializable
 
    private java.lang.String id;
 
-   private com.radial.fraudmanagement.Order order;
+   public com.radial.fraudmanagement.Order order;
 
-   private com.radial.fraudmanagement.IPAddress ipAddress;
+   public com.radial.fraudmanagement.IPAddress ipAddress;
 
    public FraudRequest()
    {
@@ -31,6 +31,9 @@ public class FraudRequest implements java.io.Serializable
 
    public com.radial.fraudmanagement.Order getOrder()
    {
+       if(null == this.order) {
+           this.order = new Order();
+       }
       return this.order;
    }
 
@@ -41,6 +44,9 @@ public class FraudRequest implements java.io.Serializable
 
    public com.radial.fraudmanagement.IPAddress getIpAddress()
    {
+       if(null == this.ipAddress) {
+           this.ipAddress = new IPAddress();
+       }
       return this.ipAddress;
    }
 
