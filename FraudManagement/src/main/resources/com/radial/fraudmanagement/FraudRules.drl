@@ -7,30 +7,29 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 function boolean isNullIP(IPAddress ip) {
-    boolean status=false;
-    if(null == ip || null == ip.countryName || null == ip.countryName.code) {
-        status=true;
+    boolean status=true;
+    if(null != ip && null != ip.countryName && null != ip.countryName.code) {
+        status=false;
     }
     return status;
 }
 
 function boolean isNullBilling(Order pOrder) {
-    boolean status=false;
-    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.address ||
-        null == pOrder.totalCost.address.countryName || null == pOrder.totalCost.address.countryName.code) {
-        status=true;
+    boolean status=true;
+    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.address &&
+        null != pOrder.totalCost.address.countryName && null != pOrder.totalCost.address.countryName.code) {
+        status=false;
     }
     return status;
 }
 
 function boolean dollarAmountInRange(Order pOrder) {
     boolean status=false;
-    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.costTotals) {
-        status=true;
-    }
-    float amount=pOrder.totalCost.costTotals.amountAfterTax;
-    if(amount < 0 || amount >= 150) {
-        status=true;
+    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.costTotals) {
+        float amount=pOrder.totalCost.costTotals.amountAfterTax;
+        if(amount >= 0 || amount < 150) {
+         status=true;
+        }
     }
     return status;
 }
@@ -44,8 +43,8 @@ function boolean BillingCountryEqual(FraudRequest fRequest) {
 }
 
 function boolean billingCountryUS(Order pOrder) {
-    boolean status=isNullBilling(pOrder);
-    if(!status && "US".equalsIgnoreCase(pOrder.totalCost.address.countryName.code)) {
+    boolean status=false;
+    if(!isNullBilling(pOrder) && "US".equalsIgnoreCase(pOrder.totalCost.address.countryName.code)) {
         status=true;
     }
     return status;
@@ -53,13 +52,11 @@ function boolean billingCountryUS(Order pOrder) {
 
 function boolean isBNLowerCase(Order pOrder) {
     boolean status=false;
-    if(null == pOrder || null == pOrder.totalCost || null == pOrder.totalCost.personName ||
-        null == pOrder.totalCost.personName.givenName || null == pOrder.totalCost.personName.surname) {
-        status=true;
-    } else {
+    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.personName &&
+        null != pOrder.totalCost.personName.givenName && null != pOrder.totalCost.personName.surname) {
         String firstName=pOrder.totalCost.personName.givenName;
         String lastName=pOrder.totalCost.personName.surname;
-        if(!isLowerCase(firstName) || !isLowerCase(lastName)) {
+        if(isLowerCase(firstName) && isLowerCase(lastName)) {
             status=true;
         }
     }
@@ -126,7 +123,7 @@ end
 rule "Rule1 BillingNameLowerCase"
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, isBNLowerCase(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.fraudRequest, !isBNLowerCase(Fraud.fraudRequest.order))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -156,7 +153,7 @@ end
 rule "Rule1 DollarAmountRange"
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, dollarAmountInRange(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.fraudRequest, !dollarAmountInRange(Fraud.fraudRequest.order))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -171,9 +168,9 @@ end
 rule "Rule1 MeetsAllCriteria"
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !dollarAmountInRange(Fraud.fraudRequest.order),
-		!billingCountryUS(Fraud.fraudRequest.order), !isNullIP(Fraud.fraudRequest.ipAddress),
+		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
 		!isNullBilling(Fraud.fraudRequest.order),!isBNLowerCase(Fraud.fraudRequest.order),
+		dollarAmountInRange(Fraud.fraudRequest.order), !billingCountryUS(Fraud.fraudRequest.order),
 		BillingCountryEqual(Fraud.fraudRequest))
 	then
 	    AuditTrail trail = new AuditTrail();
