@@ -1,2 +1,19 @@
 package com.radial.fraudmanagement;
 
+rule "FraudRules Rule1"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest)
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(10);
+	    trail.setRule("Rule1");
+	    trail.setAction("None");
+	    trail.setNotes("order is not null");
+	    Audit audit = fraud.getAudit();
+	    audit.getAuditTrail().add(trail);
+	    System.out.println("request:::"+fraud.fraudRequest);
+	    System.out.println("In FraudRules::::1");
+	    System.out.println("score:::"+ audit.getTotalScore());
+		insert( fraud );
+end
