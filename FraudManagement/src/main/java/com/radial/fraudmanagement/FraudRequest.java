@@ -11,6 +11,8 @@ public class FraudRequest implements java.io.Serializable
 
    private java.lang.String id;
 
+   private com.radial.fraudmanagement.Order order;
+
    public FraudRequest()
    {
    }
@@ -25,9 +27,20 @@ public class FraudRequest implements java.io.Serializable
       this.id = id;
    }
 
-   public FraudRequest(java.lang.String id)
+   public com.radial.fraudmanagement.Order getOrder()
+   {
+      return this.order;
+   }
+
+   public void setOrder(com.radial.fraudmanagement.Order order)
+   {
+      this.order = order;
+   }
+
+   public FraudRequest(java.lang.String id, com.radial.fraudmanagement.Order order)
    {
       this.id = id;
+      this.order = order;
    }
 
 }
