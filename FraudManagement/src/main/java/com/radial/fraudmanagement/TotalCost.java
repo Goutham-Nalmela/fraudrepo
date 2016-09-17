@@ -13,6 +13,10 @@ public class TotalCost implements java.io.Serializable
    private com.radial.fraudmanagement.PersonName personName;
    private java.lang.String email;
 
+   private com.radial.fraudmanagement.PaymentCard paymentCard;
+
+   private com.radial.fraudmanagement.CostTotals costTotals;
+
    public TotalCost()
    {
    }
@@ -47,13 +51,37 @@ public class TotalCost implements java.io.Serializable
       this.email = email;
    }
 
+   public com.radial.fraudmanagement.PaymentCard getPaymentCard()
+   {
+      return this.paymentCard;
+   }
+
+   public void setPaymentCard(com.radial.fraudmanagement.PaymentCard paymentCard)
+   {
+      this.paymentCard = paymentCard;
+   }
+
+   public com.radial.fraudmanagement.CostTotals getCostTotals()
+   {
+      return this.costTotals;
+   }
+
+   public void setCostTotals(com.radial.fraudmanagement.CostTotals costTotals)
+   {
+      this.costTotals = costTotals;
+   }
+
    public TotalCost(com.radial.fraudmanagement.Address address,
          com.radial.fraudmanagement.PersonName personName,
-         java.lang.String email)
+         java.lang.String email,
+         com.radial.fraudmanagement.PaymentCard paymentCard,
+         com.radial.fraudmanagement.CostTotals costTotals)
    {
       this.address = address;
       this.personName = personName;
       this.email = email;
+      this.paymentCard = paymentCard;
+      this.costTotals = costTotals;
    }
 
 }
