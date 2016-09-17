@@ -1,19 +1,28 @@
 package com.radial.fraudmanagement;
 
-rule "FraudRules Rule1"
+import com.radial.fraudmanagement.IPAddress;
+
+function boolean isNullIP(IPAddress ip) {
+    boolean status=false;
+    if(null == ip || null == ip.countryName || null == ip.countryName.code) {
+        status=true;
+    }
+    return status;
+}
+
+rule "Rule1 NullIP"
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest)
+		fraud:Fraud(null != Fraud.fraudRequest, isNullIP(Fraud.fraudRequest.ipAddress))
 	then
 	    AuditTrail trail = new AuditTrail();
-	    trail.setScore(10);
-	    trail.setRule("Rule1");
+	    trail.setScore(100);
+	    trail.setRule("Rule1 NullIP");
 	    trail.setAction("None");
-	    trail.setNotes("order is not null");
-	    Audit audit = fraud.getAudit();
-	    audit.getAuditTrail().add(trail);
+	    trail.setNotes("Null IP, rule should not fire");
+	    fraud.getAudit().getAuditTrail().add(trail);
 	    System.out.println("request:::"+fraud.fraudRequest);
-	    System.out.println("In FraudRules::::1");
-	    System.out.println("score:::"+ audit.getTotalScore());
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
 end
+
