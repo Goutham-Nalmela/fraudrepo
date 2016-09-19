@@ -71,7 +71,7 @@ function boolean surnameInEmail(Order pOrder) {
 
 rule "Rule3 EmailDomain"
 	dialect "java"
-	salience 3
+	salience (99)
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !validEmailDomain(Fraud.fraudRequest.order))
 	then
