@@ -24,6 +24,15 @@ function boolean isProductNameContain(Order pOrder) {
     return status;
 }
 
+function boolean isShippingMethodExist(Order pOrder) {
+    boolean status = false;
+    if(null != pOrder && null != pOrder.shippingInfo && null != pOrder.shippingInfo.shippingMethod &&
+    (pOrder.shippingInfo.shippingMethod.equalsIgnoreCase("ground") || pOrder.shippingInfo.shippingMethod.equalsIgnoreCase("2nd day"))) {
+        status = true;
+    }
+    return status;
+}
+
 rule "Rule2 ProductNameDoesNotContain"
 	dialect "java"
 	when
@@ -42,13 +51,13 @@ end
 rule "Rule2 ShippingMethod"
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isProductNameContain(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.fraudRequest, !isShippingMethodExist(Fraud.fraudRequest.order))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
-	    trail.setRule("Rule2 ProductNameDoesNotContain");
+	    trail.setRule("Rule2 ShippingMethod");
 	    trail.setAction("None");
-	    trail.setNotes("Does not meet Product Name");
+	    trail.setNotes("Does not meet Shipping Method");
 	    fraud.getAudit().getAuditTrail().add(trail);
 	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
