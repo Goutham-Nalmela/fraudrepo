@@ -4,8 +4,7 @@ import com.radial.fraudmanagement.IPAddress;
 import com.radial.fraudmanagement.Order;
 import com.radial.fraudmanagement.FraudRequest;
 import com.radial.fraudmanagement.LineItem;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+
 
 function boolean isProductNameContain(Order pOrder) {
     boolean status = false;
