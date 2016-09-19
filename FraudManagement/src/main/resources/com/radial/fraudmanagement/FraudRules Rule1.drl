@@ -10,7 +10,7 @@ function boolean isNullIP(IPAddress ip) {
     boolean status=true;
     if(null != ip && null != ip.countryName && null != ip.countryName.code) {
         status=false;
-    }
+    } 
     return status;
 }
 
