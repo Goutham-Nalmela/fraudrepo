@@ -42,7 +42,7 @@ function boolean containsSurName(String email, String surname) {
          List<String> mail = loadMailContent(email);
          if(null != mail && mail.size() > 0) {
         String emailFirstPart = mail.get(0);
-        if(emailFirstPart.compareToIgnoreCase(surname) > 0) {
+        if(emailFirstPart.toLowerCase().contains(surname.toLowerCase())) {
             status = true;
         }
       }
