@@ -92,6 +92,7 @@ function boolean containsCaseInsensitive(String productName) {
 
 rule "Rule1 NullIP"
 	dialect "java"
+	salience 10
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, isNullIP(Fraud.fraudRequest.ipAddress))
 	then
@@ -107,6 +108,7 @@ end
 
 rule "Rule1 NullBC"
 	dialect "java"
+	salience 9
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, isNullBilling(Fraud.fraudRequest.order))
 	then
@@ -122,6 +124,7 @@ end
 
 rule "Rule1 BillingNameLowerCase"
 	dialect "java"
+	salience 8
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !isBNLowerCase(Fraud.fraudRequest.order))
 	then
@@ -137,6 +140,7 @@ end
 
 rule "Rule1 BillingCountryUS"
 	dialect "java"
+	salience 7
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, billingCountryUS(Fraud.fraudRequest.order))
 	then
@@ -152,6 +156,7 @@ end
 
 rule "Rule1 DollarAmountRange"
 	dialect "java"
+	salience 6
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !dollarAmountInRange(Fraud.fraudRequest.order))
 	then
@@ -167,6 +172,7 @@ end
 
 rule "Rule1 MeetsAllCriteria"
 	dialect "java"
+	salience 5
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
 		!isNullBilling(Fraud.fraudRequest.order),isBNLowerCase(Fraud.fraudRequest.order),
