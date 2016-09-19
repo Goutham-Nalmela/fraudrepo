@@ -95,8 +95,25 @@ rule "Rule3 SurNameInEmail"
 	    trail.setScore(100);
 	    trail.setRule("Rule3 SurNameInEmail");
 	    trail.setAction("None");
-	    trail.setNotes("Email Domain not in list");
+	    trail.setNotes("Surname not contained in email");
 	    fraud.getAudit().getAuditTrail().add(trail);
 	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
 		insert( fraud );
 end
+
+rule "Rule3 MeetsAllCriteria"
+	dialect "java"
+	salience 3
+	when
+		fraud:Fraud(null != Fraud.fraudRequest,validEmailDomain(Fraud.fraudRequest.order), surnameInEmail(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(-200);
+	    trail.setRule("Rule3 MeetsAllCriteria");
+	    trail.setAction("Held for Screening");
+	    trail.setNotes("Meets all conditions");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
