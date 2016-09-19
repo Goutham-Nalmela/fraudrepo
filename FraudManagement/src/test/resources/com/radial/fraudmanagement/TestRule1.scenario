@@ -18,7 +18,7 @@
                   <fieldData>
                     <field-data>
                       <name>orderID</name>
-                      <value>order12345</value>
+                      <value>order12349</value>
                       <nature>4</nature>
                     </field-data>
                   </fieldData>
@@ -32,26 +32,11 @@
       <isModify>false</isModify>
     </fact-data>
     <execution-trace>
-      <executionTimeResult>22</executionTimeResult>
-      <numberOfRulesFired>1</numberOfRulesFired>
+      <executionTimeResult>93</executionTimeResult>
+      <numberOfRulesFired>8</numberOfRulesFired>
     </execution-trace>
-    <expect-fact>
-      <fieldValues>
-        <expect-field>
-          <fieldName>totalScore</fieldName>
-          <expected>400</expected>
-          <actualResult>No match</actualResult>
-          <successResult>false</successResult>
-          <explanation>Fact of type [Audit] was not found in the results.</explanation>
-          <operator>==</operator>
-          <nature>1</nature>
-        </expect-field>
-      </fieldValues>
-      <name>Audit</name>
-      <anonymous>true</anonymous>
-    </expect-fact>
   </fixtures>
-  <lastRunResult>2016-09-17 20:29:07.778 UTC</lastRunResult>
+  <lastRunResult>2016-09-19 07:10:34.825 UTC</lastRunResult>
   <rules/>
   <inclusive>false</inclusive>
   <packageName>com.radial.fraudmanagement</packageName>
