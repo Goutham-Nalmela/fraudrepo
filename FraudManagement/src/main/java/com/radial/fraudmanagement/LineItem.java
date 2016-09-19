@@ -9,10 +9,10 @@ public class LineItem implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   private java.lang.String lineItemId;
-   private java.lang.Float unitCost;
-   private int quantity;
-   private java.lang.String name;
+   public java.lang.String lineItemId;
+   public java.lang.Float unitCost;
+   public int quantity;
+   public java.lang.String name;
 
    public LineItem()
    {
