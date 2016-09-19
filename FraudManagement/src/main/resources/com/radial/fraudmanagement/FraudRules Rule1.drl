@@ -189,3 +189,20 @@ rule "Rule1 MeetsAllCriteria"
 		insert( fraud );
 end
 
+rule "Rule1 BillingCountryNotMatching"
+	dialect "java"
+	salience 6
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
+		!isNullBilling(Fraud.fraudRequest.order), !billingCountryUS(Fraud.fraudRequest.order), !BillingCountryEqual(Fraud.fraudRequest))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 BillingCountryNotMatching");
+	    trail.setAction("None");
+	    trail.setNotes("Billing Country not matching with IP Country");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
