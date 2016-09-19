@@ -11,7 +11,7 @@ public class TotalCost implements java.io.Serializable
 
    public com.radial.fraudmanagement.Address address;
    public com.radial.fraudmanagement.PersonName personName;
-   private java.lang.String email;
+   public java.lang.String email;
 
    public com.radial.fraudmanagement.PaymentCard paymentCard;
 
