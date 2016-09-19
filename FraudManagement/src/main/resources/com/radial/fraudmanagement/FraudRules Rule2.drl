@@ -1,2 +1,56 @@
 package com.radial.fraudmanagement;
 
+import com.radial.fraudmanagement.IPAddress;
+import com.radial.fraudmanagement.Order;
+import com.radial.fraudmanagement.FraudRequest;
+import com.radial.fraudmanagement.LineItem;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+function boolean isProductNameContain(Order pOrder) {
+    boolean status = false;
+    if(null != pOrder && null != pOrder.lineItems && null != pOrder.lineItems.lineItem
+    && pOrder.lineItems.lineItem.size() > 0) {
+        int count = 0;
+        for(LineItem item: pOrder.lineItems.lineItem) {
+            if(null != item.name && containsCaseInsensitive(item.name)) {
+                count++;
+            }
+        }
+        if(count == pOrder.lineItems.lineItem.size()) {
+            status = true;
+        }
+    }
+    return status;
+}
+
+rule "Rule2 ProductNameDoesNotContain"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, !isProductNameContain(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule2 ProductNameDoesNotContain");
+	    trail.setAction("None");
+	    trail.setNotes("Does not meet Product Name");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
+rule "Rule2 ShippingMethod"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, !isProductNameContain(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule2 ProductNameDoesNotContain");
+	    trail.setAction("None");
+	    trail.setNotes("Does not meet Product Name");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
