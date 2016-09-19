@@ -63,3 +63,19 @@ rule "Rule2 ShippingMethod"
 		insert( fraud );
 end
 
+rule "Rule2 MeetsAllCriteria"
+	dialect "java"
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, isShippingMethodExist(Fraud.fraudRequest.order),
+		        isProductNameContain(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(-200);
+	    trail.setRule("Rule2 MeetsAllCriteria");
+	    trail.setAction("Held for Screening");
+	    trail.setNotes("Meets all conditions");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
