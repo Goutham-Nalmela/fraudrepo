@@ -87,7 +87,7 @@ end
 
 rule "Rule3 SurNameInEmail"
 	dialect "java"
-	salience 3
+	salience (-3)
 	when
 		fraud:Fraud(null != Fraud.fraudRequest, !surnameInEmail(Fraud.fraudRequest.order))
 	then
