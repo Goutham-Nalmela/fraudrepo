@@ -1,2 +1,102 @@
 package com.radial.fraudmanagement;
 
+import com.radial.fraudmanagement.IPAddress;
+import com.radial.fraudmanagement.Order;
+import com.radial.fraudmanagement.FraudRequest;
+import com.radial.fraudmanagement.LineItem;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.List;
+import java.util.ArrayList;
+
+function List<String> loadMailContent(String email) {
+    String regex = "^(.+)@(.+)$";
+    List<String> mailContent = new ArrayList<String>();
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(email);
+    boolean status = false;
+    if(matcher.matches()) {
+        mailContent.add(matcher.group(1));
+        mailContent.add(matcher.group(2));
+    }
+    return mailContent;
+}
+
+function boolean emailDomainCheck(String email) {
+    boolean status = false;
+    if(null != email) {
+    List<String> mail = loadMailContent(email);
+    if(null != mail && mail.size() > 1) {
+        String emaildomain = mail.get(1);
+        if("radial.com".equalsIgnoreCase(emaildomain) || "radial.org".equalsIgnoreCase(emaildomain)) {
+            status = true;
+        }
+      }
+    }
+    return status;
+}
+
+function boolean containsSurName(String email, String surname) {
+    boolean status = false;
+    if(null != surname && null != email) {
+         List<String> mail = loadMailContent(email);
+         if(null != mail && mail.size() > 0) {
+        String emailFirstPart = mail.get(0);
+        if(emailFirstPart.compareToIgnoreCase(surname) > 0) {
+            status = true;
+        }
+      }
+    }
+    return status;                   
+}
+
+function boolean validEmailDomain(Order pOrder) {
+    boolean status = false;
+    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.email) {
+        status = emailDomainCheck(pOrder.totalCost.email);
+    }
+    return status;
+}
+
+function boolean surnameInEmail(Order pOrder) {
+    boolean status = false;
+    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.email &&
+    null != pOrder.totalCost.personName && null != pOrder.totalCost.personName.surname) {
+        status = containsSurName(pOrder.totalCost.email,pOrder.totalCost.personName.surname);
+    }
+    return status;
+}
+
+
+
+rule "Rule3 EmailDomain"
+	dialect "java"
+	salience 3
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, !validEmailDomain(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule3 EmailDomain");
+	    trail.setAction("None");
+	    trail.setNotes("Email Domain not in list");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
+
+rule "Rule3 SurNameInEmail"
+	dialect "java"
+	salience 3
+	when
+		fraud:Fraud(null != Fraud.fraudRequest, !surnameInEmail(Fraud.fraudRequest.order))
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule3 SurNameInEmail");
+	    trail.setAction("None");
+	    trail.setNotes("Email Domain not in list");
+	    fraud.getAudit().getAuditTrail().add(trail);
+	    System.out.println("score:::"+ fraud.getAudit().getTotalScore());
+		insert( fraud );
+end
