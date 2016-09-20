@@ -1,0 +1,51 @@
+
+<form id="381445155">
+<property name="name" value="Review-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<field position="0" name="username" type="InputText" id="1341485359">
+<property name="fieldRequired" value="false"/>
+<property name="groupWithPrevious" value="false"/>
+<property name="label" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;name (username)quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="errorMessage" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="title" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="readonly" value="true"/>
+<property name="isHTML" value="false"/>
+<property name="hideContent" value="false"/>
+<property name="defaultValueFormula" value="#{name}"/>
+<property name="inputBinding" value="name"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="1" name="gender" type="InputText" id="604745652">
+<property name="fieldRequired" value="false"/>
+<property name="groupWithPrevious" value="false"/>
+<property name="label" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;gender (gender)quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="errorMessage" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="title" value="quot;caquot;,quot;quot;quot;dequot;,quot;quot;quot;enquot;,quot;quot;quot;esquot;,quot;quot;quot;frquot;,quot;quot;quot;jaquot;,quot;quot;quot;ptquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="readonly" value="true"/>
+<property name="isHTML" value="false"/>
+<property name="hideContent" value="false"/>
+<property name="defaultValueFormula" value="#{gender}"/>
+<property name="inputBinding" value="gender"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="2" name="qualify" type="CheckBox" id="1623782061">
+<property name="fieldRequired" value="false"/>
+<property name="groupWithPrevious" value="false"/>
+<property name="label" value="quot;enquot;,quot;qualify (qualify)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="qualify"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+</field>
+<field position="3" name="name" type="InputText" id="189890096">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;Name (name)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="Name"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<dataHolder inputId="gender" name="#FF54A7" type="basicType" outId="" value="java.lang.String" id="gender"/>
+<dataHolder inputId="Name" name="#E9E371" type="basicType" outId="" value="java.lang.String" id="name"/>
+<dataHolder inputId="" name="#BBBBBB" type="basicType" outId="qualify" value="java.lang.Boolean" id="qualify"/>
+<dataHolder inputId="name" name="#E9E371" type="basicType" outId="" value="java.lang.String" id="username"/>
+</form>
