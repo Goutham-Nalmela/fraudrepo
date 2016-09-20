@@ -1,0 +1,38 @@
+
+<form id="1479653934">
+<property name="name" value="CaseManagement.SampleProcess-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<field position="2" name="name" type="InputText" id="478448605">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;name (name)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="name"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="0" name="age" type="InputTextInteger" id="1052218">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;age (age)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="age"/>
+<property name="fieldClass" value="java.lang.Integer"/>
+</field>
+<field position="1" name="gender" type="InputText" id="1007272805">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;gender (gender)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="gender"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="3" name="qualify" type="CheckBox" id="2134875635">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;qualify (qualify)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="qualify"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+</field>
+<dataHolder inputId="" name="#FF54A7" type="basicType" outId="age" value="java.lang.Integer" id="age"/>
+<dataHolder inputId="" name="#BBBBBB" type="basicType" outId="gender" value="java.lang.String" id="gender"/>
+<dataHolder inputId="" name="#E9E371" type="basicType" outId="name" value="java.lang.String" id="name"/>
+<dataHolder inputId="" name="#9BCAFA" type="basicType" outId="qualify" value="java.lang.Boolean" id="qualify"/>
+</form>
