@@ -3,13 +3,6 @@
 <property name="name" value="CaseManagement.SampleProcess-taskform.form"/>
 <property name="displayMode" value="default"/>
 <property name="status" value="0"/>
-<field position="2" name="name" type="InputText" id="478448605">
-<property name="fieldRequired" value="false"/>
-<property name="label" value="quot;enquot;,quot;name (name)quot;"/>
-<property name="readonly" value="false"/>
-<property name="outputBinding" value="name"/>
-<property name="fieldClass" value="java.lang.String"/>
-</field>
 <field position="0" name="age" type="InputTextInteger" id="1052218">
 <property name="fieldRequired" value="false"/>
 <property name="label" value="quot;enquot;,quot;age (age)quot;"/>
@@ -22,6 +15,13 @@
 <property name="label" value="quot;enquot;,quot;gender (gender)quot;"/>
 <property name="readonly" value="false"/>
 <property name="outputBinding" value="gender"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="2" name="name" type="InputText" id="478448605">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;name (name)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="name"/>
 <property name="fieldClass" value="java.lang.String"/>
 </field>
 <field position="3" name="qualify" type="CheckBox" id="2134875635">
