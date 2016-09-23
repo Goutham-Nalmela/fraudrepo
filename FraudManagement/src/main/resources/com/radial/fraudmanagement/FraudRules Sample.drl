@@ -1,9 +1,10 @@
 package com.radial.fraudmanagement;
 
 rule "Rule1 Sample"
+    ruleflow-group "admission"
 	dialect "java"
 	when
-		Persons(null != Persons)
+		Persons(null != Persons && null != Persons.getPerson())
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
