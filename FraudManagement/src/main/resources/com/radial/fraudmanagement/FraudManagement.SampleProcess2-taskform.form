@@ -1,0 +1,21 @@
+
+<form id="547502234">
+<property name="name" value="FraudManagement.SampleProcess2-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<field position="0" name="persons_id" type="InputText" id="484039375">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;id (persons)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="persons/id"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="1" name="persons_person" type="Subform" id="1850173130">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;person (persons)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="persons/person"/>
+<property name="fieldClass" value="java.lang.Object"/>
+</field>
+<dataHolder inputId="" name="#E9E371" type="dataModelerEntry" outId="persons" value="com.radial.fraudmanagement.Persons" id="persons"/>
+</form>
