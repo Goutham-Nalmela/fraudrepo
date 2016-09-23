@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_7vRY0IFwEea-05RYn1Y7fg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" exporter="jBPM Designer" exporterVersion="6.2.0" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_Z7b1cIFxEea-05RYn1Y7fg" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" exporter="jBPM Designer" exporterVersion="6.2.0" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
   <bpmn2:itemDefinition id="_personsItem" structureRef="com.radial.fraudmanagement.Persons"/>
   <bpmn2:process id="FraudManagement.SampleProcess2" drools:packageName="org.jbpm" drools:version="1.0" name="SampleProcess2" isExecutable="true">
     <bpmn2:property id="persons" itemSubjectRef="_personsItem"/>
@@ -24,7 +24,7 @@ if(persons != null) {
   System.out.println("persons:"+persons);
   System.out.println("persons:"+persons.getId());
   if(persons.getPerson() != null) {
-    Person person = persons.getPerson();
+    com.radial.fraudmanagement.Person person = persons.getPerson();
     System.out.println("persons:"+person.getGivenName());
   } else {
     System.out.println("persons.person Null");
@@ -45,40 +45,40 @@ if(persons != null) {
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="_CD6FE9B3-8B17-49A0-BBD4-028158A82FB8" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_10A7D585-A08D-4AF6-9C9E-295288A52418" targetRef="_5DCC6A3C-7A1F-435D-9890-F99FDAB0D369"/>
   </bpmn2:process>
-  <bpmndi:BPMNDiagram id="_7vRY0YFwEea-05RYn1Y7fg">
-    <bpmndi:BPMNPlane id="_7vRY0oFwEea-05RYn1Y7fg" bpmnElement="FraudManagement.SampleProcess2">
-      <bpmndi:BPMNShape id="_7vRY04FwEea-05RYn1Y7fg" bpmnElement="processStartEvent">
+  <bpmndi:BPMNDiagram id="_Z7jxQIFxEea-05RYn1Y7fg">
+    <bpmndi:BPMNPlane id="_Z7jxQYFxEea-05RYn1Y7fg" bpmnElement="FraudManagement.SampleProcess2">
+      <bpmndi:BPMNShape id="_Z7jxQoFxEea-05RYn1Y7fg" bpmnElement="processStartEvent">
         <dc:Bounds height="30.0" width="30.0" x="120.0" y="165.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_7vRY1IFwEea-05RYn1Y7fg" bpmnElement="_10A7D585-A08D-4AF6-9C9E-295288A52418">
+      <bpmndi:BPMNShape id="_Z7k_YIFxEea-05RYn1Y7fg" bpmnElement="_10A7D585-A08D-4AF6-9C9E-295288A52418">
         <dc:Bounds height="80.0" width="100.0" x="195.0" y="135.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_7vRY1YFwEea-05RYn1Y7fg" bpmnElement="_7B122F39-5A8F-403B-9B1A-57C661C968CF">
+      <bpmndi:BPMNEdge id="_Z7k_YYFxEea-05RYn1Y7fg" bpmnElement="_7B122F39-5A8F-403B-9B1A-57C661C968CF">
         <di:waypoint xsi:type="dc:Point" x="135.0" y="180.0"/>
         <di:waypoint xsi:type="dc:Point" x="245.0" y="175.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_7vRY1oFwEea-05RYn1Y7fg" bpmnElement="_5DCC6A3C-7A1F-435D-9890-F99FDAB0D369">
+      <bpmndi:BPMNShape id="_Z7k_YoFxEea-05RYn1Y7fg" bpmnElement="_5DCC6A3C-7A1F-435D-9890-F99FDAB0D369">
         <dc:Bounds height="28.0" width="28.0" x="340.0" y="166.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_7vRY14FwEea-05RYn1Y7fg" bpmnElement="_CD6FE9B3-8B17-49A0-BBD4-028158A82FB8">
+      <bpmndi:BPMNEdge id="_Z7k_Y4FxEea-05RYn1Y7fg" bpmnElement="_CD6FE9B3-8B17-49A0-BBD4-028158A82FB8">
         <di:waypoint xsi:type="dc:Point" x="245.0" y="175.0"/>
         <di:waypoint xsi:type="dc:Point" x="354.0" y="180.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-  <bpmn2:relationship id="_7vRY2IFwEea-05RYn1Y7fg" type="BPSimData">
+  <bpmn2:relationship id="_Z7k_ZIFxEea-05RYn1Y7fg" type="BPSimData">
     <bpmn2:extensionElements>
       <bpsim:BPSimData>
         <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
           <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters" baseTimeUnit="min"/>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_CD6FE9B3-8B17-49A0-BBD4-028158A82FB8" id="_7vRY2YFwEea-05RYn1Y7fg">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_CD6FE9B3-8B17-49A0-BBD4-028158A82FB8" id="_Z7k_ZYFxEea-05RYn1Y7fg">
             <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
               <bpsim:Probability xsi:type="bpsim:Parameter">
                 <bpsim:FloatingParameter value="100.0"/>
               </bpsim:Probability>
             </bpsim:ControlParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_10A7D585-A08D-4AF6-9C9E-295288A52418" id="_7vRY2oFwEea-05RYn1Y7fg">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_10A7D585-A08D-4AF6-9C9E-295288A52418" id="_Z7k_ZoFxEea-05RYn1Y7fg">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:UniformDistribution max="10.0" min="5.0"/>
@@ -90,14 +90,14 @@ if(persons != null) {
               </bpsim:UnitCost>
             </bpsim:CostParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_7B122F39-5A8F-403B-9B1A-57C661C968CF" id="_7vRY24FwEea-05RYn1Y7fg">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_7B122F39-5A8F-403B-9B1A-57C661C968CF" id="_Z7k_Z4FxEea-05RYn1Y7fg">
             <bpsim:ControlParameters xsi:type="bpsim:ControlParameters">
               <bpsim:Probability xsi:type="bpsim:Parameter">
                 <bpsim:FloatingParameter value="100.0"/>
               </bpsim:Probability>
             </bpsim:ControlParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="processStartEvent" id="_7vRY3IFwEea-05RYn1Y7fg">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="processStartEvent" id="_Z7k_aIFxEea-05RYn1Y7fg">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:UniformDistribution max="10.0" min="5.0"/>
@@ -109,7 +109,7 @@ if(persons != null) {
               </bpsim:Probability>
             </bpsim:ControlParameters>
           </bpsim:ElementParameters>
-          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_5DCC6A3C-7A1F-435D-9890-F99FDAB0D369" id="_7vRY3YFwEea-05RYn1Y7fg">
+          <bpsim:ElementParameters xsi:type="bpsim:ElementParameters" elementRef="_5DCC6A3C-7A1F-435D-9890-F99FDAB0D369" id="_Z7k_aYFxEea-05RYn1Y7fg">
             <bpsim:TimeParameters xsi:type="bpsim:TimeParameters">
               <bpsim:ProcessingTime xsi:type="bpsim:Parameter">
                 <bpsim:UniformDistribution max="10.0" min="5.0"/>
@@ -119,7 +119,7 @@ if(persons != null) {
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_7vRY0IFwEea-05RYn1Y7fg</bpmn2:source>
-    <bpmn2:target>_7vRY0IFwEea-05RYn1Y7fg</bpmn2:target>
+    <bpmn2:source>_Z7b1cIFxEea-05RYn1Y7fg</bpmn2:source>
+    <bpmn2:target>_Z7b1cIFxEea-05RYn1Y7fg</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
