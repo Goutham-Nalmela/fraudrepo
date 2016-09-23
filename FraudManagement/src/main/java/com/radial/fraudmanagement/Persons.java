@@ -40,6 +40,9 @@ public class Persons implements java.io.Serializable
 
    public com.radial.fraudmanagement.AuditTrail getAuditTrail()
    {
+       if(null == this.auditTrail) {
+           this.auditTrail = new com.radial.fraudmanagement.AuditTrail();
+       }
       return this.auditTrail;
    }
 
