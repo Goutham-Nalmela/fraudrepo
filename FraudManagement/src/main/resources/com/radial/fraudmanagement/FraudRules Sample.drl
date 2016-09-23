@@ -1,2 +1,14 @@
 package com.radial.fraudmanagement;
 
+rule "Rule1 Sample"
+	dialect "java"
+	when
+		Person(null != Person)
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 Sample");
+	    trail.setAction("None");
+	    trail.setNotes("Null IP, rule should not fire");
+		insert( trail );
+end
