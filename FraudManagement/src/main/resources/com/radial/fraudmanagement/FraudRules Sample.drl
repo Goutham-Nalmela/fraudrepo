@@ -3,7 +3,7 @@ package com.radial.fraudmanagement;
 rule "Rule1 Sample"
 	dialect "java"
 	when
-		Person(null != Person)
+		Persons(null != Persons)
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
