@@ -12,6 +12,8 @@ public class Persons implements java.io.Serializable
    private java.lang.String id;
    private com.radial.fraudmanagement.Person person;
 
+   private com.radial.fraudmanagement.AuditTrail auditTrail;
+
    public Persons()
    {
    }
@@ -36,10 +38,22 @@ public class Persons implements java.io.Serializable
       this.person = person;
    }
 
-   public Persons(java.lang.String id, com.radial.fraudmanagement.Person person)
+   public com.radial.fraudmanagement.AuditTrail getAuditTrail()
+   {
+      return this.auditTrail;
+   }
+
+   public void setAuditTrail(com.radial.fraudmanagement.AuditTrail auditTrail)
+   {
+      this.auditTrail = auditTrail;
+   }
+
+   public Persons(java.lang.String id, com.radial.fraudmanagement.Person person,
+         com.radial.fraudmanagement.AuditTrail auditTrail)
    {
       this.id = id;
       this.person = person;
+      this.auditTrail = auditTrail;
    }
 
 }
