@@ -11,7 +11,7 @@ public class LineItems implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public java.util.List<com.radial.fraudmanagement.LineItem> lineItem;
+   private java.util.List<com.radial.fraudmanagement.LineItem> lineItem;
 
    public LineItems()
    {
