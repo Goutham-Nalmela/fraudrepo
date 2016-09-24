@@ -9,13 +9,13 @@ public class TotalCost implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public com.radial.fraudmanagement.Address address;
-   public com.radial.fraudmanagement.PersonName personName;
-   public java.lang.String email;
+   private com.radial.fraudmanagement.Address address;
+   private com.radial.fraudmanagement.PersonName personName;
+   private java.lang.String email;
 
-   public com.radial.fraudmanagement.PaymentCard paymentCard;
+   private com.radial.fraudmanagement.PaymentCard paymentCard;
 
-   public com.radial.fraudmanagement.CostTotals costTotals;
+   private com.radial.fraudmanagement.CostTotals costTotals;
 
    public TotalCost()
    {
