@@ -9,8 +9,8 @@ public class ShippingInfo implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public java.lang.String shippingMethod;
-   public com.radial.fraudmanagement.CostTotals costTotals;
+   private java.lang.String shippingMethod;
+   private com.radial.fraudmanagement.CostTotals costTotals;
 
    public ShippingInfo()
    {
