@@ -21,7 +21,7 @@ th {
 </style>
 </head>
 <body>
-<h3>Manager Approval</h3>
+
 <table width="100%">
   <tbody>
 	<tr>
@@ -139,7 +139,19 @@ th {
   </tbody>
 </table>
 
-   
+<div class="control-group">
+        <label class="control-label" for="rev_status_out">Action:</label>
+        <div class="controls">
+			<select id="rev_status_out" name="rev_status_out">
+                  <option value="Approve">Approve</option>
+                  <option value="Reject">Reject</option>                 
+            </select>
+		</div><hr>
+        <label class="control-label" for="rev_notes_out">Notes:</label>
+        <div class="controls">
+         <textarea id="rev_notes_out" name="rev_notes_out"></textarea>
+        </div>
+    </div>   
 
 </body>
 </html>
