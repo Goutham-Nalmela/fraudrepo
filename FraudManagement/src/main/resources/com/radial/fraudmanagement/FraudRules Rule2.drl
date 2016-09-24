@@ -8,15 +8,15 @@ import com.radial.fraudmanagement.LineItem;
 
 function boolean isProductNameContain(Order pOrder) {
     boolean status = false;
-    if(null != pOrder && null != pOrder.lineItems && null != pOrder.lineItems.lineItem
-    && pOrder.lineItems.lineItem.size() > 0) {
+    if(null != pOrder && null != pOrder.getLineItems() && null != pOrder.getLineItems().getLineItem()
+    && pOrder.getLineItems().getLineItem().size() > 0) {
         int count = 0;
-        for(LineItem item: pOrder.lineItems.lineItem) {
-            if(null != item.name && containsCaseInsensitive(item.name)) {
+        for(LineItem item: pOrder.getLineItems().getLineItem()) {
+            if(null != item.getName() && containsCaseInsensitive(item.getName())) {
                 count++;
             }
         }
-        if(count == pOrder.lineItems.lineItem.size()) {
+        if(count == pOrder.getLineItems().getLineItem().size()) {
             status = true;
         }
     }
@@ -25,8 +25,8 @@ function boolean isProductNameContain(Order pOrder) {
 
 function boolean isShippingMethodExist(Order pOrder) {
     boolean status = false;
-    if(null != pOrder && null != pOrder.shippingInfo && null != pOrder.shippingInfo.shippingMethod &&
-    (pOrder.shippingInfo.shippingMethod.equalsIgnoreCase("ground") || pOrder.shippingInfo.shippingMethod.equalsIgnoreCase("2nd day"))) {
+    if(null != pOrder && null != pOrder.getShippingInfo() && null != pOrder.getShippingInfo().getShippingMethod() &&
+    (pOrder.getShippingInfo().getShippingMethod().equalsIgnoreCase("ground") || pOrder.getShippingInfo().getShippingMethod().equalsIgnoreCase("2nd day"))) {
         status = true;
     }
     return status;
@@ -36,7 +36,7 @@ rule "Rule2 ProductNameDoesNotContain"
 	dialect "java"
 	salience 4
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isProductNameContain(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !isProductNameContain(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -52,7 +52,7 @@ rule "Rule2 ShippingMethod"
 	dialect "java"
 	salience 3
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isShippingMethodExist(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !isShippingMethodExist(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -68,8 +68,8 @@ rule "Rule2 MeetsAllCriteria"
 	dialect "java"
 	salience 2
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, isShippingMethodExist(Fraud.fraudRequest.order),
-		        isProductNameContain(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), isShippingMethodExist(Fraud.getFraudRequest().getOrder()),
+		        isProductNameContain(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(-200);
