@@ -9,8 +9,8 @@ public class PersonName implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public java.lang.String givenName;
-   public java.lang.String surname;
+   private java.lang.String givenName;
+   private java.lang.String surname;
 
    public PersonName()
    {
