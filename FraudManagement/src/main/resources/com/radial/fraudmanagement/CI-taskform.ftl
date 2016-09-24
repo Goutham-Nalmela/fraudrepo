@@ -29,17 +29,17 @@ th {
 <h2>Order Details:</h2>
 </td>
 </tr>
-<#if rev_in.orderId??>
+<#if fraud.fraudRequest.order.orderId??>
 <tr>
 <td><b>Order ID : ${fraud.fraudRequest.order.orderID}<b></td>
 </tr>
 </#if>
 <tr>
   <td>
-    <b>Customer:</b>
-    <#if rev_in.customerInfo??>
+    <b>Customer Details:</b>
+    <#if fraud.fraudRequest.order.customerInfo??>
    <span style="color:blue">
-     ${rev_in.customerInfo}
+     ${fraud.fraudRequest.order.customerInfo}
     </span> 
    </#if>
 <table width="100%">
@@ -50,16 +50,16 @@ th {
 </tr>  
 <tr>
   <td>
-  <#if rev_in.shippingDetails??>
+  <#if fraud.fraudRequest.order.shippingInfo??>
    <p>
-     ${rev_in.shippingDetails}
+     ${fraud.fraudRequest.order.shippingInfo}
     </p> 
    </#if>
   </td>
 <td>
-  <#if rev_in.billingDetails??>
+  <#if fraud.fraudRequest.order.shippingInfo??>
    <p>
-     ${rev_in.billingDetails}
+     ${fraud.fraudRequest.order.shippingInfo}
     </p> 
    </#if>  
   </td>
@@ -78,26 +78,26 @@ th {
 <th>Details</th>
 <th>Score</th>
 </tr>
-<#if rev_in.audit??>  
+<#if fraud.audit??>  
 <tr>
 <td>
-  <#if rev_in.audit.auditId??>
+  <#if fraud.audit.totalScore??>
    <span>
-     ${rev_in.audit.auditId}
+     ${fraud.audit.totalScore}
     </span> 
   </#if>  
 </td>
 <td>
-  <#if rev_in.audit.details??>
+  <#if fraud.audit.auditTrail??>
    <span>
-     ${rev_in.audit.details}
+     ${fraud.audit.auditTrail}
     </span> 
   </#if>  
 </td>
   <td>
-  <#if rev_in.audit.score??>
+  <#if fraud.audit.auditTrail??>
    <span>
-     ${rev_in.audit.score}
+     ${fraud.audit.auditTrail}
     </span> 
   </#if>  
 </td>
