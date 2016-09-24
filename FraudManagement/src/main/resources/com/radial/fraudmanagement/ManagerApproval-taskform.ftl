@@ -139,17 +139,21 @@ th {
   </tbody>
 </table>
 
+<div>
+<label class="control-label" for="approver1_comments">Approver Comments:</label>
+${approver1_comments}
+</div>
 <div class="control-group">
-        <label class="control-label" for="rev_status_out">Action:</label>
+        <label class="control-label" for="approver2_action">Action:</label>
         <div class="controls">
-			<select id="rev_status_out" name="rev_status_out">
+			<select id="approver2_action" name="approver2_action">
                   <option value="Approve">Approve</option>
                   <option value="Reject">Reject</option>                 
             </select>
 		</div><hr>
-        <label class="control-label" for="rev_notes_out">Notes:</label>
+        <label class="control-label" for="approver2_comments">Notes:</label>
         <div class="controls">
-         <textarea id="rev_notes_out" name="rev_notes_out"></textarea>
+         <textarea id="approver2_comments" name="approver2_comments"></textarea>
         </div>
     </div>   
 
