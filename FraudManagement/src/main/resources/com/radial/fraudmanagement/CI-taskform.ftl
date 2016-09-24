@@ -61,6 +61,25 @@ th {
 	 </td>	 
 	</tr>
 </#if>
+<#if fraud.fraudRequest.order.totalCost??>
+	<tr>
+	 <td>
+	  <b>Billing Address:</b>
+	  <p> 
+		${fraud.fraudRequest.order.totalCost.address.addressLine}<br/>
+		${fraud.fraudRequest.order.totalCost.address.cityName} ${fraud.fraudRequest.order.totalCost.address.postalCode}<br/>
+		${fraud.fraudRequest.order.totalCost.address.stateProv} ${fraud.fraudRequest.order.totalCost.address.countryName.name}<br/>		
+	  </p>
+	  <b>Card Details:</b>
+	  <p> 
+		Card Number: ${fraud.fraudRequest.order.totalCost.paymentCard.maskedCardNumber}<br/>
+		Card Type: ${fraud.fraudRequest.order.totalCost.paymentCard.cardType}<br/>
+		Card Holder Name: ${fraud.fraudRequest.order.totalCost.paymentCard.cardHolderName}<br/>
+		Expires On: ${fraud.fraudRequest.order.totalCost.paymentCard.expireDate}<br/>	
+	  </p>
+	 </td>
+	</tr>
+</#if>
 <#if fraud.audit??>
 	<tr>
 	  <td><b>Total Audit Score :</b> ${fraud.audit.totalScore}</td>
