@@ -75,6 +75,7 @@ th {
 		Card Number:${fraud.fraudRequest.order.totalCost.paymentCard.maskedCardNumber}<br/>
 		Type:${fraud.fraudRequest.order.totalCost.paymentCard.cardType}<br/>
 		Payee Name:${fraud.fraudRequest.order.totalCost.paymentCard.cardHolderName}<br/>		
+		Expiry:${fraud.fraudRequest.order.totalCost.paymentCard.expireDate}<br/>
 	  </p>
 	  </td>
 	</tr>
