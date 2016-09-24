@@ -12,7 +12,7 @@ public class Audit implements java.io.Serializable
    static final long serialVersionUID = 1L;
 
    private int totalScore;
-   public java.util.List<com.radial.fraudmanagement.AuditTrail> auditTrail;
+   private java.util.List<com.radial.fraudmanagement.AuditTrail> auditTrail;
 
    public Audit()
    {
