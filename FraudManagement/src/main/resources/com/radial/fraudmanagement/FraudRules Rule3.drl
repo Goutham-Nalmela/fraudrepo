@@ -71,6 +71,7 @@ function boolean surnameInEmail(Order pOrder) {
 
 rule "Rule3 EmailDomain"
     salience 3
+    ruleflow-group "AllRules"
 	dialect "java"
 	when
 		fraud:Fraud(null != Fraud.getFraudRequest(), !validEmailDomain(Fraud.getFraudRequest().getOrder()))
@@ -87,6 +88,7 @@ end
 
 rule "Rule3 SurNameInEmail"
     salience 2
+    ruleflow-group "AllRules"
 	dialect "java"
 	when
 		fraud:Fraud(null != Fraud.getFraudRequest(), !surnameInEmail(Fraud.getFraudRequest().getOrder()))
@@ -103,6 +105,7 @@ end
 
 rule "Rule3 MeetsAllCriteria"
 	dialect "java"
+	ruleflow-group "AllRules"
 	salience 1
 	when
 		fraud:Fraud(null != Fraud.getFraudRequest(),validEmailDomain(Fraud.getFraudRequest().getOrder()), surnameInEmail(Fraud.getFraudRequest().getOrder()))
