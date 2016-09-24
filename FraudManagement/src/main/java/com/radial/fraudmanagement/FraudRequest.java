@@ -11,9 +11,9 @@ public class FraudRequest implements java.io.Serializable
 
    private java.lang.String id;
 
-   public com.radial.fraudmanagement.Order order;
+   private com.radial.fraudmanagement.Order order;
 
-   public com.radial.fraudmanagement.IPAddress ipAddress;
+   private com.radial.fraudmanagement.IPAddress ipAddress;
 
    public FraudRequest()
    {
