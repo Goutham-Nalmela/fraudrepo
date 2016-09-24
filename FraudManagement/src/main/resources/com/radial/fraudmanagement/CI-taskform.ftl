@@ -74,10 +74,25 @@ th {
 	  <p>
 		Card Number:${fraud.fraudRequest.order.totalCost.paymentCard.maskedCardNumber}<br/>
 		Type:${fraud.fraudRequest.order.totalCost.paymentCard.cardType}<br/>
-		Payee Name:${fraud.fraudRequest.order.totalCost.paymentCard.cardHolderName}<br/>		
-		Expiry:${fraud.fraudRequest.order.totalCost.paymentCard.expireDate}<br/>
+		Payee Name:${fraud.fraudRequest.order.totalCost.paymentCard.cardHolderName}<br/>				
 	  </p>
 	  </td>
+	</tr>
+</#if>
+<#if fraud.fraudRequest.order.lineItems??>
+	<tr>
+	 <td>
+		<table>
+		  <#list fraud.fraudRequest.order.lineItems.lineItem as item>
+			<tr>
+			   <td>${item.lineItemId}</td>
+			   <td>${item.name}</td>
+			   <td>${item.quantity}</td>
+			   <td>${item.unitCost}</td>
+			</tr>
+		  </#list>
+		</table>
+	 </td>
 	</tr>
 </#if>
 <#if fraud.audit??>
