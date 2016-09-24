@@ -41,12 +41,12 @@ th {
    <span style="color:blue">
    Given Name:${fraud.fraudRequest.order.customerInfo.personName.givenName} <br/>
    Last Name: ${fraud.fraudRequest.order.customerInfo.personName.surname}	<br/>
-   Telephone Number: ${fraud.fraudRequest.order.customerInfo.telephone != null ? "("+fraud.fraudRequest.order.customerInfo.telephone.phoneLocationType + ") "+ fraud.fraudRequest.order.customerInfo.telephone.legacyPhoneNumber:""}<br/>
+   Telephone Number: ${fraud.fraudRequest.order.customerInfo.telephone.phoneLocationType} ${fraud.fraudRequest.order.customerInfo.telephone.legacyPhoneNumber}<br/>
    <#if fraud.fraudRequest.order.customerInfo.address??>
 	Address:<p> 
 	${fraud.fraudRequest.order.customerInfo.address.addressLine}<br/>
 	${fraud.fraudRequest.order.customerInfo.address.cityName} ${fraud.fraudRequest.order.customerInfo.address.postalCode}<br/>
-	${fraud.fraudRequest.order.customerInfo.address.stateProv} ${fraud.fraudRequest.order.customerInfo.address.countryName != null?fraud.fraudRequest.order.customerInfo.address.countryName.name:""}<br/>
+	${fraud.fraudRequest.order.customerInfo.address.stateProv} ${fraud.fraudRequest.order.customerInfo.address.countryName.name}<br/>
 	</p>
    </#if>
    
@@ -63,7 +63,7 @@ th {
   <#if fraud.fraudRequest.order.shippingInfo??>
    <p>
      Shipping Method: ${fraud.fraudRequest.order.shippingInfo.shippingMethod}<br/>
-	 Shipping Cost: ${fraud.fraudRequest.order.shippingInfo.costTotals !=null?fraud.fraudRequest.order.shippingInfo.costTotals.amountAfterTax:"0.0"}
+	 Shipping Cost: ${fraud.fraudRequest.order.shippingInfo.costTotals.amountAfterTax}
     </p> 
    </#if>
   </td>
@@ -73,7 +73,7 @@ th {
    <B>Billing Address:</B><p> 
 	${fraud.fraudRequest.order.totalCost.address.addressLine}<br/>
 	${fraud.fraudRequest.order.totalCost.address.cityName} ${fraud.fraudRequest.order.totalCost.address.postalCode}<br/>
-	${fraud.fraudRequest.order.totalCost.address.stateProv} ${fraud.fraudRequest.order.totalCost.address.countryName != null?fraud.fraudRequest.order.totalCost.address.countryName.name:""}<br/>
+	${fraud.fraudRequest.order.totalCost.address.stateProv} ${fraud.fraudRequest.order.totalCost.address.countryName.name}<br/>
 	</p>
 	 </#if>  
 	<#if fraud.fraudRequest.order.totalCost.paymentCard??>
