@@ -9,9 +9,9 @@ public class CustomerInfo implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public com.radial.fraudmanagement.PersonName personName;
-   public com.radial.fraudmanagement.Telephone telephone;
-   public com.radial.fraudmanagement.Address address;
+   private com.radial.fraudmanagement.PersonName personName;
+   private com.radial.fraudmanagement.Telephone telephone;
+   private com.radial.fraudmanagement.Address address;
 
    public CustomerInfo()
    {
