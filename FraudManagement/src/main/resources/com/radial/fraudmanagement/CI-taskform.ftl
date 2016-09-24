@@ -40,6 +40,9 @@ th {
        <span style="color:blue">
 		Given Name:${fraud.fraudRequest.order.customerInfo.personName.givenName} <br/>
 		Last Name: ${fraud.fraudRequest.order.customerInfo.personName.surname}	<br/>
+		<#if fraud.fraudRequest.order.totalCost??>
+		Email:${fraud.fraudRequest.order.totalCost.email} <br/>
+		</#if>
 		Telephone Number: ${fraud.fraudRequest.order.customerInfo.telephone.phoneLocationType} ${fraud.fraudRequest.order.customerInfo.telephone.legacyPhoneNumber}<br/>
 		Address:<p> 
 		${fraud.fraudRequest.order.customerInfo.address.addressLine}<br/>
@@ -50,6 +53,18 @@ th {
 	  </#if>
 	 </td>
 	</tr>
+<#if fraud.fraudRequest.ipAddress??>	
+	<tr>
+	 <td>
+	 <b>IP Address:</b>
+	 <p>
+		IP: ${fraud.fraudRequest.ipAddress.id}<br/>
+		IP Country:${fraud.fraudRequest.ipAddress.countryName.name}<br/>
+	 </p>
+	 </td>	 
+	</tr>
+</#if>
+	
 <#if fraud.fraudRequest.order.shippingInfo??>	
 	<tr>
 	 <td>
@@ -82,10 +97,13 @@ th {
 <#if fraud.fraudRequest.order.lineItems??>
 	<tr>
 	 <td>
+	 <#if fraud.fraudRequest.order.totalCost??>
+		Total Order Cost:${fraud.fraudRequest.order.totalCost.costTotals.amountAfterTax} <br/>
+	 </#if>
 		<table>
 		  <#list fraud.fraudRequest.order.lineItems.lineItem as items>
 			<tr>
-			   <td>${items.lineItem.name}</td>			   
+			   <td>${items}</td>			   
 			</tr>
 		  </#list>
 		</table>
