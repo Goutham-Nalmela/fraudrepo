@@ -9,8 +9,8 @@ public class CostTotals implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public java.lang.String currencyCode;
-   public float amountAfterTax;
+   private java.lang.String currencyCode;
+   private float amountAfterTax;
 
    public CostTotals()
    {
