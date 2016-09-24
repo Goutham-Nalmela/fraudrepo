@@ -37,19 +37,19 @@ th {
 	 <td>
       <b>Customer Details:</b>
       <#if fraud.fraudRequest.order.customerInfo??>
-       <span style="color:blue">
+       <p>
 		Given Name:${fraud.fraudRequest.order.customerInfo.personName.givenName} <br/>
 		Last Name: ${fraud.fraudRequest.order.customerInfo.personName.surname}	<br/>
 		<#if fraud.fraudRequest.order.totalCost??>
 		Email:${fraud.fraudRequest.order.totalCost.email} <br/>
 		</#if>
-		Telephone Number: ${fraud.fraudRequest.order.customerInfo.telephone.phoneLocationType} ${fraud.fraudRequest.order.customerInfo.telephone.legacyPhoneNumber}<br/>
+		Telephone Number: (${fraud.fraudRequest.order.customerInfo.telephone.phoneLocationType}) ${fraud.fraudRequest.order.customerInfo.telephone.legacyPhoneNumber}<br/>
 		Address:<p> 
 		${fraud.fraudRequest.order.customerInfo.address.addressLine}<br/>
 		${fraud.fraudRequest.order.customerInfo.address.cityName} ${fraud.fraudRequest.order.customerInfo.address.postalCode}<br/>
 		${fraud.fraudRequest.order.customerInfo.address.stateProv} ${fraud.fraudRequest.order.customerInfo.address.countryName.name}<br/>
 		</p>     
-	  </span> 
+	  </p> 
 	  </#if>
 	 </td>
 	</tr>
@@ -117,6 +117,12 @@ th {
 	<tr>
 	  <td>
 	  <table>
+	  <th>
+		<td>Rule Fired</td>
+		<td>Action</td>
+		<td>Score</td>
+		<td>Notes</td>
+	  </th>
 	  <#list fraud.audit.auditTrail as trail>
 	  <tr>
 		<td>${trail.rule}</td>
