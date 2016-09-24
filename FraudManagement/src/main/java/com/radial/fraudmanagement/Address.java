@@ -13,7 +13,7 @@ public class Address implements java.io.Serializable
    private java.lang.String cityName;
    private java.lang.String postalCode;
    private java.lang.String stateProv;
-   public com.radial.fraudmanagement.CountryName countryName;
+   private com.radial.fraudmanagement.CountryName countryName;
 
    public Address()
    {
