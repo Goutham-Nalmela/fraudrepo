@@ -9,7 +9,7 @@ public class IPAddress implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public com.radial.fraudmanagement.CountryName countryName;
+   private com.radial.fraudmanagement.CountryName countryName;
    private java.lang.String id;
 
    public IPAddress()
