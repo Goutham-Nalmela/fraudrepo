@@ -56,12 +56,17 @@ th {
 	</tr>
 	<tr>
 	  <td>
-	   <ui:repeat value="#{fraud.audit.auditTrail}" var="trail">
-		<li>${trail.rule}</li>
-        <li>${trail.action}</li>
-        <li>${trail.score}</li>
-		<li>${trail.notes}</li>		  
-	   </ui:repeat>	 
+	  <table>
+	  <#list fraud.audit.auditTrail as trail>
+	  <tr>
+		<td>${trail.rule}</td>
+        <td>${trail.action}</td>
+        <td>${trail.score}</td>
+		<td>${trail.notes}</td>	
+	  </tr>
+	  </#list>
+	  </table>
+	  
 	  </td>
 	</tr>
 </#if>
