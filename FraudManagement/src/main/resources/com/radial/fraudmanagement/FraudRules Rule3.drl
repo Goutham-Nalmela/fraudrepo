@@ -52,17 +52,17 @@ function boolean containsSurName(String email, String surname) {
 
 function boolean validEmailDomain(Order pOrder) {
     boolean status = false;
-    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.email) {
-        status = emailDomainCheck(pOrder.totalCost.email);
+    if(null != pOrder && null != pOrder.getTotalCost() && null != pOrder.getTotalCost().getEmail()) {
+        status = emailDomainCheck(pOrder.getTotalCost().getEmail());
     }
     return status;
 }
 
 function boolean surnameInEmail(Order pOrder) {
     boolean status = false;
-    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.email &&
-    null != pOrder.totalCost.personName && null != pOrder.totalCost.personName.surname) {
-        status = containsSurName(pOrder.totalCost.email,pOrder.totalCost.personName.surname);
+    if(null != pOrder && null != pOrder.getTotalCost() && null != pOrder.getTotalCost().getEmail() &&
+    null != pOrder.getTotalCost().getPersonName() && null != pOrder.getTotalCost().getPersonName().getSurname()) {
+        status = containsSurName(pOrder.getTotalCost().getEmail(),pOrder.getTotalCost().getPersonName().getSurname());
     }
     return status;
 }
@@ -73,7 +73,7 @@ rule "Rule3 EmailDomain"
     salience 3
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !validEmailDomain(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !validEmailDomain(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -89,7 +89,7 @@ rule "Rule3 SurNameInEmail"
     salience 2
 	dialect "java"
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !surnameInEmail(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !surnameInEmail(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -105,7 +105,7 @@ rule "Rule3 MeetsAllCriteria"
 	dialect "java"
 	salience 1
 	when
-		fraud:Fraud(null != Fraud.fraudRequest,validEmailDomain(Fraud.fraudRequest.order), surnameInEmail(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(),validEmailDomain(Fraud.getFraudRequest().getOrder()), surnameInEmail(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(-200);
