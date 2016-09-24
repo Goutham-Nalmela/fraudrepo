@@ -9,8 +9,8 @@ public class Fraud implements java.io.Serializable
 
    static final long serialVersionUID = 1L;
 
-   public com.radial.fraudmanagement.FraudRequest fraudRequest;
-   public com.radial.fraudmanagement.Audit audit;
+   private com.radial.fraudmanagement.FraudRequest fraudRequest;
+   private com.radial.fraudmanagement.Audit audit;
 
    public Fraud()
    {
