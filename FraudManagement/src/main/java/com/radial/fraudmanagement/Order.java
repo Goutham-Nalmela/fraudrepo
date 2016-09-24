@@ -11,13 +11,13 @@ public class Order implements java.io.Serializable
 
    private java.lang.String orderID;
 
-   public com.radial.fraudmanagement.ShippingInfo shippingInfo;
+   private com.radial.fraudmanagement.ShippingInfo shippingInfo;
 
-   public com.radial.fraudmanagement.LineItems lineItems;
+   private com.radial.fraudmanagement.LineItems lineItems;
 
-   public com.radial.fraudmanagement.TotalCost totalCost;
+   private com.radial.fraudmanagement.TotalCost totalCost;
 
-   public com.radial.fraudmanagement.CustomerInfo customerInfo;
+   private com.radial.fraudmanagement.CustomerInfo customerInfo;
 
    public Order()
    {
