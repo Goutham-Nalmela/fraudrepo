@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 
 function boolean isNullIP(IPAddress ip) {
     boolean status=true;
-    if(null != ip && null != ip.countryName && null != ip.countryName.code) {
+    if(null != ip && null != ip.getCountryName() && null != ip.getCountryName().getCode()) {
         status=false;
     } 
     return status;
@@ -16,8 +16,8 @@ function boolean isNullIP(IPAddress ip) {
 
 function boolean isNullBilling(Order pOrder) {
     boolean status=true;
-    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.address &&
-        null != pOrder.totalCost.address.countryName && null != pOrder.totalCost.address.countryName.code) {
+    if(null != pOrder && null != pOrder.getTotalCost() && null != pOrder.getTotalCost().getAddress() &&
+        null != pOrder.getTotalCost().getAddress().getCountryName() && null != pOrder.getTotalCost().getAddress().getCountryName().getCode()) {
         status=false;
     }
     return status;
@@ -25,8 +25,8 @@ function boolean isNullBilling(Order pOrder) {
 
 function boolean dollarAmountInRange(Order pOrder) {
     boolean status=false;
-    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.costTotals) {
-        float amount=pOrder.totalCost.costTotals.amountAfterTax;
+    if(null != pOrder && null != pOrder.getTotalCost() && null != pOrder.getTotalCost().getCostTotals()) {
+        float amount=pOrder.getTotalCost().getCostTotals().getAmountAfterTax();
         if(amount >= 0 || amount < 150) {
          status=true;
         }
@@ -36,7 +36,7 @@ function boolean dollarAmountInRange(Order pOrder) {
 
 function boolean BillingCountryEqual(FraudRequest fRequest) {
     boolean status = false;
-    if(fRequest.ipAddress.countryName.code.equalsIgnoreCase(fRequest.order.totalCost.address.countryName.code)){
+    if(fRequest.getIpAddress().getCountryName().getCode().equalsIgnoreCase(fRequest.getOrder().getTotalCost().getAddress().getCountryName().getCode())){
         status=true;
     }
     return status;
@@ -44,7 +44,7 @@ function boolean BillingCountryEqual(FraudRequest fRequest) {
 
 function boolean billingCountryUS(Order pOrder) {
     boolean status=false;
-    if(!isNullBilling(pOrder) && "US".equalsIgnoreCase(pOrder.totalCost.address.countryName.code)) {
+    if(!isNullBilling(pOrder) && "US".equalsIgnoreCase(pOrder.getTotalCost().getAddress().getCountryName().getCode())) {
         status=true;
     }
     return status;
@@ -52,10 +52,10 @@ function boolean billingCountryUS(Order pOrder) {
 
 function boolean isBNLowerCase(Order pOrder) {
     boolean status=false;
-    if(null != pOrder && null != pOrder.totalCost && null != pOrder.totalCost.personName &&
-        null != pOrder.totalCost.personName.givenName && null != pOrder.totalCost.personName.surname) {
-        String firstName=pOrder.totalCost.personName.givenName;
-        String lastName=pOrder.totalCost.personName.surname;
+    if(null != pOrder && null != pOrder.getTotalCost() && null != pOrder.getTotalCost().getPersonName() &&
+        null != pOrder.getTotalCost().getPersonName().getGivenName() && null != pOrder.getTotalCost().getPersonName().getSurname()) {
+        String firstName=pOrder.getTotalCost().getPersonName().getGivenName();
+        String lastName=pOrder.getTotalCost().getPersonName().getSurname();
         if(isLowerCase(firstName) && isLowerCase(lastName)) {
             status=true;
         }
@@ -94,7 +94,7 @@ rule "Rule1 NullIP"
 	dialect "java"
 	salience 10
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, isNullIP(Fraud.fraudRequest.ipAddress))
+		fraud:Fraud(null != Fraud.getFraudRequest(), isNullIP(Fraud.getFraudRequest().getIpAddress()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -110,7 +110,7 @@ rule "Rule1 NullBC"
 	dialect "java"
 	salience 9
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, isNullBilling(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), isNullBilling(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -126,7 +126,7 @@ rule "Rule1 BillingNameLowerCase"
 	dialect "java"
 	salience 8
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isBNLowerCase(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !isBNLowerCase(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -142,7 +142,7 @@ rule "Rule1 BillingCountryUS"
 	dialect "java"
 	salience 7
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, billingCountryUS(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), billingCountryUS(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -158,7 +158,7 @@ rule "Rule1 DollarAmountRange"
 	dialect "java"
 	salience 6
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !dollarAmountInRange(Fraud.fraudRequest.order))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !dollarAmountInRange(Fraud.getFraudRequest().getOrder()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
@@ -174,10 +174,10 @@ rule "Rule1 MeetsAllCriteria"
 	dialect "java"
 	salience 5
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
-		!isNullBilling(Fraud.fraudRequest.order),isBNLowerCase(Fraud.fraudRequest.order),
-		dollarAmountInRange(Fraud.fraudRequest.order), !billingCountryUS(Fraud.fraudRequest.order),
-		BillingCountryEqual(Fraud.fraudRequest))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !isNullIP(Fraud.getFraudRequest().getIpAddress()),
+		!isNullBilling(Fraud.getFraudRequest().getOrder()),isBNLowerCase(Fraud.getFraudRequest().getOrder()),
+		dollarAmountInRange(Fraud.getFraudRequest().getOrder()), !billingCountryUS(Fraud.getFraudRequest().getOrder()),
+		BillingCountryEqual(Fraud.getFraudRequest()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(-300);
@@ -193,8 +193,8 @@ rule "Rule1 BillingCountryNotMatching"
 	dialect "java"
 	salience 6
 	when
-		fraud:Fraud(null != Fraud.fraudRequest, !isNullIP(Fraud.fraudRequest.ipAddress),
-		!isNullBilling(Fraud.fraudRequest.order), !billingCountryUS(Fraud.fraudRequest.order), !BillingCountryEqual(Fraud.fraudRequest))
+		fraud:Fraud(null != Fraud.getFraudRequest(), !isNullIP(Fraud.getFraudRequest().getIpAddress()),
+		!isNullBilling(Fraud.getFraudRequest().getOrder()), !billingCountryUS(Fraud.getFraudRequest().getOrder()), !BillingCountryEqual(Fraud.getFraudRequest()))
 	then
 	    AuditTrail trail = new AuditTrail();
 	    trail.setScore(100);
