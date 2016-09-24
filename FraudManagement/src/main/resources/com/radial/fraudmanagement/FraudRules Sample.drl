@@ -7,8 +7,23 @@ rule "Rule1 Sample"
 		p:Persons(null != Persons && null != Persons.getPerson())
 	then
 	    AuditTrail trail = new AuditTrail();
-	    trail.setScore(100);
+	    trail.setScore(-100);
 	    trail.setRule("Rule1 Sample");
+	    trail.setAction("None");
+	    trail.setNotes("Null IP, rule should not fire");
+	    p.setAuditTrail(trail);
+		insert( p );
+end
+
+rule "Rule1 Sample2"
+    ruleflow-group "admission"
+	dialect "java"
+	when
+		p:Persons(null == Persons || null == Persons.getPerson())
+	then
+	    AuditTrail trail = new AuditTrail();
+	    trail.setScore(100);
+	    trail.setRule("Rule1 Sample2");
 	    trail.setAction("None");
 	    trail.setNotes("Null IP, rule should not fire");
 	    p.setAuditTrail(trail);
