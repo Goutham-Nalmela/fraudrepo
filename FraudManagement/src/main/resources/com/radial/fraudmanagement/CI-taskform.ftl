@@ -70,6 +70,12 @@ th {
 		${fraud.fraudRequest.order.totalCost.address.cityName} ${fraud.fraudRequest.order.totalCost.address.postalCode}<br/>
 		${fraud.fraudRequest.order.totalCost.address.stateProv} ${fraud.fraudRequest.order.totalCost.address.countryName.name}<br/>		
 	  </p>
+	  <b>Card Details:</b>
+	  <p>
+		Card Number:${fraud.fraudRequest.order.totalCost.paymentCard.maskedCardNumber}<br/>
+		Type:${fraud.fraudRequest.order.totalCost.paymentCard.cardType}<br/>
+		Payee Name:${fraud.fraudRequest.order.totalCost.paymentCard.cardHolderName}<br/>		
+	  </p>
 	  </td>
 	</tr>
 </#if>
