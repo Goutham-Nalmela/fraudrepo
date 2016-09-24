@@ -83,12 +83,12 @@ th {
 	<tr>
 	 <td>
 		<table>
-		  <#list fraud.fraudRequest.order.lineItems.lineItem as item>
+		  <#list fraud.fraudRequest.order.lineItems.lineItem as items>
 			<tr>
-			   <td>${item.lineItemId}</td>
-			   <td>${item.name}</td>
-			   <td>${item.quantity}</td>
-			   <td>${item.unitCost}</td>
+			   
+			   <td>${items.name}</td>
+			   <td>${items.quantity}</td>
+			   <td>${items.unitCost}</td>
 			</tr>
 		  </#list>
 		</table>
