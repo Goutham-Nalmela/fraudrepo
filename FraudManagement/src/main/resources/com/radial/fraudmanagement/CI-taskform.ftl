@@ -85,10 +85,7 @@ th {
 		<table>
 		  <#list fraud.fraudRequest.order.lineItems.lineItem as items>
 			<tr>
-			   
-			   <td>${items.name}</td>
-			   <td>${items.quantity}</td>
-			   <td>${items.unitCost}</td>
+			   <td>${items}</td>			   
 			</tr>
 		  </#list>
 		</table>
