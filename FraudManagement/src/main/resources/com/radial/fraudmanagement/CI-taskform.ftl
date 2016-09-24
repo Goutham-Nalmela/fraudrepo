@@ -50,6 +50,23 @@ th {
 	  </#if>
 	 </td>
 	</tr>
+<#if fraud.audit??>
+	<tr>
+	  <td><b>Total Audit Score :</b> ${fraud.audit.totalScore}</td>
+	  <td>
+	  <table>
+	  <c:forEach var="trail" items="${fraud.audit.auditTrail}">
+        <tr>
+          <td>${trail.rule}</td>
+          <td>${trail.action}</td>
+          <td>${trail.score}</td>
+		  <td>${trail.notes}</td>
+        </tr>
+      </c:forEach>
+	  </table>
+	  </td>
+	</tr>
+</#if>
   </tbody>
 </table>
 
